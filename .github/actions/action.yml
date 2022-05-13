@@ -26,6 +26,6 @@ runs:
         (grep -o CVE- test3.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         echo "::set-output name=file-exists::$((grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false')"
       shell: bash
-    - run: echo "File exists? ${{ steps.file-checker.file-exists }}"
+    - run: echo "File exists? ${{ steps.file-checker.outputs.file-exists }}"
       shell: bash
 
