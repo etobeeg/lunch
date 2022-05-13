@@ -24,7 +24,7 @@ runs:
         test -f test_.txt && echo 'File exists' || echo 'File do not exists'
         (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         (grep -o CVE- test3.txt | wc -l > 0) &&  echo 'true' || echo 'false'
-        echo "::set-output name=file-exists::$(echo (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false')"
+        echo "::set-output name=file-exists::$((grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false')"
       shell: bash
     - run: echo "File exists? ${{ steps.file-checker.file-exists }}"
       shell: bash
