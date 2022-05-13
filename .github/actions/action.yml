@@ -24,9 +24,9 @@ runs:
         test -f test_.txt && echo 'File exists' || echo 'File do not exists'
         (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         (grep -o CVE- test3.txt | wc -l > 0) &&  echo 'true' || echo 'false'
-        echo "::set-output name=file-exists::$((test -f test.txt &&  echo 'true' || echo 'false')"
-        echo "::set-output name=file-contains-cve::$((grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false')"
+        echo "::set-output name=file-exists::$(test -f test.txt &&  echo 'true' || echo 'false')"
+        echo "::set-output name=file-contains-cve::$((test -f test.txt) && (grep -o CVE- test.txt | wc -l > 0) && echo 'true' || echo 'false')"
       shell: bash
-    - run: echo "File exists? ${{ steps.file-checker.outputs.file-exists }}"
+    - run: echo "File exists? ${{ steps.file-checker.outputs.file-contains-cve }}"
       shell: bash
 
