@@ -5,4 +5,4 @@ cerebro
 CVE-33445566
 CVE-4456567
 CVE-446789
-<li><i>Vulnerabilities Found<i>:&nbsp;1</li>
+<li><i>Vulnerabilities Found<i>:&nbsp;0</li>
