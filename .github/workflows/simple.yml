@@ -8,9 +8,9 @@ jobs:
     steps:
       - name: check if file exits
         run: |
-          test -f ./test.txt
-          test -f ./test.txts
-          test -f ./test.txts
+          test -f ./test.txt && echo 'File exists'
+          test -f ./test.txts && echo 'File do not exists'
+      
 
 
         
