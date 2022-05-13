@@ -25,7 +25,7 @@ runs:
         (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         (grep -o CVE- test3.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         echo "::set-output name=file-exists::$(test -f test.txt &&  echo 'true' || echo 'false')"
-        echo "::set-output name=file-contains-cve::$((test -f test.txt) && (grep -o CVE- test.txt | wc -l > 0) && echo 'true' || echo 'false')"
+        echo "::set-output name=file-contains-cve::$((test -f test3.txt) && (grep -o CVE- test3.txt | wc -l > 0) && echo 'true' || echo 'false')"
       shell: bash
     - id: set-job-to-fail
       if: ${{ steps.file-checker.outputs.file-contains-cve == 'true'}}
