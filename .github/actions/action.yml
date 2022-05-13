@@ -22,11 +22,11 @@ runs:
         ls -la
         test -f test.txt && echo 'File exists' || echo 'File do not exists'
         test -f test_.txt && echo 'File exists' || echo 'File do not exists'
-        (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;0</li>' test.txt | wc -l > 0) &&  echo 'contains no VCE' || echo 'contains VCE'
-        (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;1</li>' test.txt | wc -l > 0) &&  echo 'contains one VCE' || echo 'Contains no VCE'
-        (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;0</li>' test3.txt | wc -l > 0) &&  echo 'false' || echo 'true'
+        (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;0</li>' test.txt | wc -l > 0) &&  echo 'test.txt contains no VCE' || echo 'test.txt contains VCE'
+        (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;1</li>' test3.txt | wc -l > 0) &&  echo 'test3.txt contains one VCE' || echo 'test3.txt Contains no VCE'
+      
         echo "::set-output name=file-exists::$(test -f test.txt &&  echo 'true' || echo 'false')"
-        echo "::set-output name=file-contains-cve::$((test -f test.txt) && (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;0</li>' test.txt | wc -l > 0) && echo 'true' || echo 'false')"
+        echo "::set-output name=file-contains-cve::$((test -f test.txt) && (grep -o '<li><i>Vulnerabilities Found<i>:&nbsp;0</li>' test.txt | wc -l > 0) && echo 'false' || echo 'true')"
       shell: bash
     - id: set-job-to-fail
       if: ${{ steps.file-checker.outputs.file-contains-cve == 'true'}}
