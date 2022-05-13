@@ -17,12 +17,15 @@ runs:
     - id: random-number-generator
       run: echo "::set-output name=random-number::$(echo $RANDOM)"
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - run: |
+    - id: file-checker
+      run: |
         ls -la
         test -f test.txt && echo 'File exists' || echo 'File do not exists'
         test -f test_.txt && echo 'File exists' || echo 'File do not exists'
         (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false'
         (grep -o CVE- test3.txt | wc -l > 0) &&  echo 'true' || echo 'false'
+        echo "::set-output name=file-exists::$(echo (grep -o CVE- test.txt | wc -l > 0) &&  echo 'true' || echo 'false')"
       shell: bash
+    - run: echo "File exists? ${{ steps.file-checker.file-exists }}"
+      shell: bash
+
