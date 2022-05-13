@@ -22,5 +22,5 @@ runs:
     - run: |
         ls -la
         test -f test.txt && echo 'File exists' || echo 'File do not exists'
-        test -f test_.txt && echo 'File do no exists' || echo 'File exists'
+        test -f test_.txt && echo 'File exists' || echo 'File do not exists'
       shell: bash
