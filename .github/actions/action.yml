@@ -27,7 +27,7 @@ runs:
         echo "::set-output name=file-exists::$(test -f test.txt &&  echo 'true' || echo 'false')"
         echo "::set-output name=file-contains-cve::$((test -f test2.txt) && (grep -o CVE- test.txt | wc -l > 0) && echo 'true' || echo 'false')"
       shell: bash
-    - id: Set job to fail
+    - id: set job to fail
       if: ${{ steps.file-checker.outputs.file-contains-cve == 'true'}}
       run: |
         echo "File exists? ${{ steps.file-checker.outputs.file-contains-cve }}"
