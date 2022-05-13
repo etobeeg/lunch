@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: check if file exits
         run: |
+          ls -la
           test -f ./test.txt && echo 'File exists'
           test -f ./test.txts && echo 'File do not exists'
       
