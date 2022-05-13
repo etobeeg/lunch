@@ -3,17 +3,16 @@ name: Shell Commands
 on: [push]
 
 jobs:
-  run-shell-command:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-      - name: check if file exits
-        run: |
-          ls -la
-          test -f ./test.txt && echo 'File exists'
-          test -f ./test.txts && echo 'File do not exists'
-      
-
-
-        
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: actions/hello-world-composite-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
 
 
