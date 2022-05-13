@@ -2,3 +2,6 @@ Test
 
 cerebro
 
+CVE-33445566
+CVE-4456567
+CVE-446789
